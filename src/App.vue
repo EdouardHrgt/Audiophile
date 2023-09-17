@@ -30,7 +30,7 @@
   --body-size: 0.938rem;
 
   --margin-bottom: 10rem;
-  --page-padding: 0 3rem;
+  --page-padding: 5rem;
 }
 
 * {
@@ -38,6 +38,10 @@
   margin: 0;
   box-sizing: border-box;
   font-family: 'Manrope', sans-serif;
+}
+
+.active {
+  display: block;
 }
 
 .flex {
@@ -74,9 +78,20 @@ button {
   outline: none;
   border: none;
   cursor: pointer;
-  transition: 0.3s;
   width: 10rem;
   height: 3rem;
+}
+
+a,
+button,
+svg {
+  transition: all 0.3s;
+}
+
+main {
+  background-color: lightslategray;
+  min-height: 100dvh;
+  width: 100%;
 }
 
 /* --- TITLES & paraph --- */
@@ -164,6 +179,7 @@ input[type='text'] {
   border: 2px solid var(--clr-red);
 }
 
+/* --- RESPONSIVE --- */
 @media screen and (max-width: 1440px) {
 }
 @media screen and (max-width: 1024px) {
