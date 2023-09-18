@@ -11,15 +11,18 @@
         </div>
       </div>
     </section>
+    <FooterBar />
   </div>
 </template>
 
 <script>
 import NavBar from '@/components/NavBar.vue';
+import FooterBar from '@/components/FooterBar.vue';
 export default {
   name: 'HomeView',
   components: {
     NavBar,
+    FooterBar,
   },
   data() {
     return {
