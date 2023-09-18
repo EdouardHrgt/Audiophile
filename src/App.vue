@@ -11,6 +11,7 @@
 :root {
   --clr-black: #000000;
   --clr-dark-grey: #101010;
+  --clr-border: #979797;
   --clr-grey: #f1f1f1;
   --clr-offwhite: #fafafa;
   --clr-white: #ffffff;
@@ -31,6 +32,7 @@
 
   --margin-bottom: 10rem;
   --page-padding: 5rem;
+  --max-width: 1440px;
 }
 
 * {
@@ -89,8 +91,6 @@ svg {
 }
 
 main {
-  background-color: lightslategray;
-  min-height: 100dvh;
   width: 100%;
 }
 
@@ -105,32 +105,33 @@ h6 {
   color: var(--clr-black);
 }
 h1 {
-  font-size: 3.5rem;
+  font-size: var(--h1-size);
   letter-spacing: 2px;
   line-height: 58px;
+  text-transform: uppercase;
 }
 h2 {
-  font-size: 2.5rem;
+  font-size: var(--h2-size);
   letter-spacing: 1.5px;
   line-height: 44px;
 }
 h3 {
-  font-size: 2rem;
+  font-size: var(--h3-size);
   letter-spacing: 1.15px;
   line-height: 36px;
 }
 h4 {
-  font-size: 1.75rem;
+  font-size: var(--h4-size);
   letter-spacing: 2px;
   line-height: 38px;
 }
 h5 {
-  font-size: 1.5rem;
+  font-size: var(--h5-size);
   letter-spacing: 1.7px;
   line-height: 33px;
 }
 h6 {
-  font-size: 1.125rem;
+  font-size: var(--h6-size);
   letter-spacing: 1.3px;
   line-height: 24px;
 }
@@ -138,6 +139,11 @@ p {
   font-size: var(--body-size);
   line-height: 25px;
   font-weight: medium;
+}
+.p-overline {
+  font-size: var(--overline-size);
+  letter-spacing: 10px;
+  text-transform: uppercase;
 }
 /* --- BUTTONS STYLE --- */
 .btn-1 {
@@ -165,6 +171,7 @@ p {
 .btn-1-p,
 .btn-2-p {
   text-transform: uppercase;
+  letter-spacing: 1px;
 }
 .btn-2:hover .btn-2-p {
   color: var(--clr-white);
@@ -183,7 +190,18 @@ input[type='text'] {
 @media screen and (max-width: 1440px) {
 }
 @media screen and (max-width: 1024px) {
+  :root {
+    --page-padding: 3rem;
+  }
 }
 @media screen and (max-width: 768px) {
+  :root {
+    --h1-size: 2.25rem;
+    --page-padding: 1.5rem;
+  }
+  h1 {
+    letter-spacing: 1.29px;
+    line-height: 40px;
+  }
 }
 </style>
