@@ -40,6 +40,7 @@
   margin: 0;
   box-sizing: border-box;
   font-family: 'Manrope', sans-serif;
+  background-repeat: no-repeat;
 }
 
 .active {
@@ -59,6 +60,11 @@
 .flex-align {
   display: flex;
   align-items: center;
+}
+
+.large {
+  max-width: var(--max-width);
+  margin: auto;
 }
 
 img {
@@ -104,7 +110,8 @@ h6 {
   font-weight: bold;
   color: var(--clr-black);
 }
-h1 {
+h1,
+.h2-big {
   font-size: var(--h1-size);
   letter-spacing: 2px;
   line-height: 58px;
@@ -170,11 +177,22 @@ p {
   color: var(--clr-peach);
 }
 .btn-1-p,
-.btn-2-p {
+.btn-2-p,
+.btn-4-p {
   text-transform: uppercase;
   letter-spacing: 1px;
 }
 .btn-2:hover .btn-2-p {
+  color: var(--clr-white);
+}
+.btn-4 {
+  background-color: var(--clr-black);
+  border: none;
+}
+.btn-4:hover {
+  background-color: rgb(79, 79, 79);
+}
+.btn-4-p {
   color: var(--clr-white);
 }
 
