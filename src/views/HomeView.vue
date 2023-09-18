@@ -11,18 +11,21 @@
         </div>
       </div>
     </section>
+    <HeroShop class="hero-shop"/>
     <FooterBar />
   </div>
 </template>
 
 <script>
 import NavBar from '@/components/NavBar.vue';
+import HeroShop from '@/components/HeroShop.vue';
 import FooterBar from '@/components/FooterBar.vue';
 export default {
   name: 'HomeView',
   components: {
     NavBar,
     FooterBar,
+    HeroShop,
   },
   data() {
     return {
@@ -62,6 +65,9 @@ p {
 h1 {
   color: var(--clr-white);
   margin: 1.5rem 0;
+}
+.hero-shop {
+  margin: 13rem auto;
 }
 /* --- RESPONSIVE --- */
 @media screen and (max-width: 1440px) {

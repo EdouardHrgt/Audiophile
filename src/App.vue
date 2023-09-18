@@ -134,6 +134,7 @@ h6 {
   font-size: var(--h6-size);
   letter-spacing: 1.3px;
   line-height: 24px;
+  text-transform: uppercase;
 }
 p {
   font-size: var(--body-size);
