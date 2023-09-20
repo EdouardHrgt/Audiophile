@@ -89,6 +89,9 @@ button {
   width: 10rem;
   height: 3rem;
 }
+button p {
+  font-weight: 500;
+}
 
 a,
 button,
@@ -131,6 +134,7 @@ h4 {
   font-size: var(--h4-size);
   letter-spacing: 2px;
   line-height: 38px;
+  text-transform: uppercase;
 }
 h5 {
   font-size: var(--h5-size);
@@ -161,7 +165,7 @@ p {
   background-color: var(--clr-light-peach);
 }
 .btn-2 {
-  background-color: var(--clr-white);
+  background-color: transparent;
   border: 1px solid var(--clr-black);
 }
 .btn-2:hover {
