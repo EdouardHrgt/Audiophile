@@ -1,7 +1,6 @@
 <template>
   <div>
-    <header>
-      <!-- @wheel.prevent @touchmove.prevent @scroll.prevent -->
+    <header @wheel.prevent @touchmove.prevent @scroll.prevent>
       <div class="flex-align">
         <div class="logos flex-align">
           <svg
@@ -71,14 +70,13 @@ export default {
 <style scoped>
 header {
   background-color: var(--clr-black);
-  margin: 0;
 }
 header > div {
   max-width: var(--max-width);
   justify-content: space-between;
   padding: 1rem 0 1.5rem;
   margin: auto;
-  border-bottom: 1px solid var(--clr-border);
+  border-bottom: 1px solid var(--clr-trans-border);
 }
 .burger,
 .mobile-nav {

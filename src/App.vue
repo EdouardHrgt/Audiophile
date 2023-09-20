@@ -12,6 +12,7 @@
   --clr-black: #000000;
   --clr-dark-grey: #101010;
   --clr-border: #979797;
+  --clr-trans-border: hsla(0, 0%, 59%, 0.5);
   --clr-grey: #f1f1f1;
   --clr-offwhite: #fafafa;
   --clr-white: #ffffff;
@@ -90,7 +91,9 @@ button {
   height: 3rem;
 }
 button p {
-  font-weight: 500;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 a,
@@ -164,6 +167,9 @@ p {
 .btn-1:hover {
   background-color: var(--clr-light-peach);
 }
+.btn-1-p {
+  color: var(--clr-white);
+}
 .btn-2 {
   background-color: transparent;
   border: 1px solid var(--clr-black);
@@ -179,12 +185,6 @@ p {
 }
 .btn-3:hover .btn-3-p {
   color: var(--clr-peach);
-}
-.btn-1-p,
-.btn-2-p,
-.btn-4-p {
-  text-transform: uppercase;
-  letter-spacing: 1px;
 }
 .btn-2:hover .btn-2-p {
   color: var(--clr-white);

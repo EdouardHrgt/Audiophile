@@ -153,6 +153,7 @@ h1 {
   border-radius: 10px;
   background-image: url('../assets/home/desktop/image-speaker-zx7.jpg');
   background-size: cover;
+  background-position: center;
   margin: 0 auto 7rem;
   padding: 6.1rem 0 6.1rem 5rem;
 }
