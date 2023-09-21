@@ -1,53 +1,53 @@
 <template>
   <div>
     <section>
-      <div class="prod large flex-align">
+      <div class="prod large flex-align" v-for="p in productList" :key="p.id">
         <div class="prod-img">
           <picture>
-            <source media="(min-width: 1024px)" srcset="../assets/shared/desktop/image-xx99-mark-two-headphones.jpg" />
-            <source media="(min-width: 768px)" srcset="../assets/shared/mobile/image-xx99-mark-two-headphones.jpg" />
-            <img src="../assets/shared/tablet/image-xx99-mark-two-headphones.jpg" />
+            <source media="(min-width: 1024px)" :srcset="require('../assets/shared/desktop/' + p.main.desktop)" />
+            <source media="(min-width: 768px)" :srcset="require('../assets/shared/mobile/' + p.main.mobile)" />
+            <img :src="require('../assets/shared/tablet/' + p.main.tablet)" />
           </picture>
         </div>
         <div class="prod-txt">
           <p class="p-overline"><strong>new product</strong></p>
-          <h2 class="prod-name">xx99 mark ii headphones</h2>
+          <h2 class="prod-name">{{ p.name }}</h2>
           <p class="prod-desc">
-            The new XX99 Mark II headphones is the pinnacle of pristine audio. It redefines your premium headphone experience by
-            reproducing the balanced depth and precision of studio-quality sound.
+            {{ p.description }}
           </p>
-          <button class="btn-1"><p class="btn-1-p">see product</p></button>
+          <button class="btn-1"><router-link class="product-link" :to="`/product/${p.category}/${p.slug}`">see product</router-link></button>
         </div>
       </div>
     </section>
+    <BestGear class="best-gear" />
+    <FooterBar />
   </div>
 </template>
 
 <script>
-import datas from '/data.json';
+import BestGear from '@/components/BestGear.vue';
+import FooterBar from '@/components/FooterBar.vue';
 export default {
   name: 'ProductBox',
-  data() {
-    return {
-      datas: datas, // Need to import json here or app crash even if not needed...
-      products: [],
-    };
-  },
-  methods: {
-    filter(arr) {
-      console.log(arr.filter((n) => n.category === 'headphones'));
-    },
-  },
-  mounted() {
-    this.products = this.datas.filter((n) => n.category === 'headphones');
+  props: ['productList'],
+  components: {
+    BestGear,
+    FooterBar,
   },
 };
 </script>
 
 <style scoped>
+.prod:nth-child(even) {
+  flex-direction: row-reverse;
+}
 .prod {
   gap: 7rem;
   margin: 6rem auto;
+}
+.product-link {
+  color: var(--clr-white);
+  font-size: var(--body-size);
 }
 .p-overline {
   color: var(--clr-peach);
@@ -72,6 +72,9 @@ export default {
 .prod-desc {
   margin-bottom: 2rem;
 }
+.best-gear {
+  margin: 7rem auto;
+}
 @media screen and (max-width: 1440px) {
   .prod {
     gap: 5rem;
@@ -82,6 +85,9 @@ export default {
   .prod {
     flex-direction: column;
     gap: 2rem;
+  }
+  .prod:nth-child(even) {
+    flex-direction: column;
   }
   .prod-img img {
     max-height: 22rem;
@@ -97,6 +103,9 @@ export default {
   }
   .prod-txt * {
     max-width: 35.75rem;
+  }
+  .best-gear {
+    margin: 3rem auto 4rem;
   }
 }
 @media screen and (max-width: 768px) {

@@ -82,12 +82,12 @@ footer {
 }
 .footer-nav-logo:after {
   width: 6.5rem;
-  height: 3px;
+  height: 4px;
   background-color: var(--clr-peach);
   position: absolute;
   z-index: 1;
   content: '';
-  top: -3.55rem;
+  top: -3.5rem;
 }
 footer nav ul {
   gap: 2rem;

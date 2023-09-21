@@ -1,0 +1,223 @@
+<template>
+  <div>
+    <section class="large">
+      <router-link to="/" class="back-link">Go Back</router-link>
+      <div class="product flex-align">
+        <div class="prod-img"></div>
+        <div class="prod-txt">
+          <p class="p-overline"><strong>new product</strong></p>
+          <h2 class="prod-name">{{ productInfos[0].name }}</h2>
+          <p class="prod-desc">{{ productInfos[0].description }}</p>
+          <p class="price">
+            <strong>$ {{ productInfos[0].price }}</strong>
+          </p>
+          <div class="cart flex-align">
+            <div class="quantity flex-center">
+              <p class="quantity-setters" @click="decrement()">-</p>
+              <p id="qt">{{ quantity }}</p>
+              <p class="quantity-setters" @click="increment">+</p>
+            </div>
+            <p class="err" v-show="errMsg">{{ errMsg }}</p>
+            <button class="btn-1" @click="addToCart()"><p class="btn-1-p">add to cart</p></button>
+          </div>
+        </div>
+      </div>
+      <div class="description large flex">
+        <div class="features">
+          <h3>features</h3>
+          <p>{{ productInfos[0].features }}</p>
+        </div>
+        <div class="in-the-box">
+          <h3>in the box</h3>
+          <ul>
+            <li v-for="f in productInfos[0].includes" :key="f.item" class="flex-align">
+              <p>
+                <span>{{ f.quantity }}x</span>
+              </p>
+              <p>{{ f.item }}</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'ProductDetail',
+  props: ['productInfos'],
+  data() {
+    return {
+      quantity: 1,
+      errMsg: null,
+    };
+  },
+  methods: {
+    addToCart() {
+      this.errMsg = null;
+      if (this.range(this.quantity, 1, 10)) {
+        alert('add to cart...');
+      } else {
+        this.errMsg = 'you cant add this quantity to your cart';
+      }
+    },
+    range(x, min, max) {
+      // Check if the quantity is in between 1 and 10
+      return x >= min && x <= max;
+    },
+    increment() {
+      this.errMsg = false;
+      this.quantity >= 10 ? (this.errMsg = 'A maximum of 10 is required') : this.quantity++;
+    },
+    decrement() {
+      this.errMsg = false;
+      this.quantity <= 0 ? (this.errMsg = 'A minimum of 1 is required') : this.quantity--;
+    },
+  },
+};
+</script>
+<style scoped>
+section {
+  padding: 3rem 0;
+}
+.back-link {
+  color: var(--clr-border);
+  font-size: var(--body-size);
+  margin-bottom: 3rem;
+  display: block;
+  font-weight: 600;
+  transition: color 0.4s;
+}
+.back-link:hover {
+  color: var(--clr-black);
+}
+.product {
+  gap: 6rem;
+}
+.p-overline {
+  color: var(--clr-peach);
+}
+.prod-img,
+.prod-txt {
+  width: 100%;
+}
+.prod-img {
+  background-color: lightcoral;
+  height: 35rem;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.pro-img * {
+  object-fit: cover;
+}
+.prod-txt * {
+  max-width: 27.813rem;
+}
+.price {
+  margin-bottom: 1rem;
+}
+.price strong {
+  font-size: var(--h6-size);
+  letter-spacing: 1.3px;
+  font-weight: 900;
+}
+.prod-name {
+  text-transform: uppercase;
+  margin: 1.5rem 0;
+}
+.prod-desc {
+  margin-bottom: 1rem;
+}
+.cart {
+  gap: 1rem;
+  position: relative;
+}
+.err {
+  color: var(--clr-red);
+  position: absolute;
+  bottom: -1.7rem;
+  font-weight: 500;
+}
+.quantity {
+  height: 3rem;
+  background-color: var(--clr-grey);
+  gap: 1rem;
+  width: 7rem;
+}
+.quantity * {
+  font-size: var(--h6-size);
+  font-weight: 600;
+  color: var(--clr-border);
+}
+.quantity-setters {
+  cursor: pointer;
+  transition: 0.4s;
+}
+.quantity-setters:hover {
+  color: var(--clr-black);
+}
+#qt {
+  color: var(--clr-black);
+}
+
+/* FEATURES & IN THE BOX Sections */
+.description {
+  gap: 6rem;
+  margin-top: 7rem;
+}
+.in-the-box,
+.features {
+  width: 100%;
+}
+.features p {
+  max-width: 39.688rem;
+  color: var(--clr-border);
+}
+.description h3 {
+  margin-bottom: 2rem;
+}
+.in-the-box span {
+  color: var(--clr-peach);
+  font-weight: 900;
+}
+.in-the-box li {
+  gap: 1rem;
+  margin: 0.7rem 0;
+}
+
+@media screen and (max-width: 1440px) {
+  section {
+    padding: 4rem var(--page-padding);
+  }
+}
+@media screen and (max-width: 1024px) {
+  .product {
+    gap: 2rem;
+  }
+  h2 {
+    font-size: var(--h4-size);
+  }
+  .prod-img {
+    height: 20.5rem;
+  }
+  .prod-txt * {
+    max-width: auto;
+  }
+}
+@media screen and (max-width: 768px) {
+  section {
+    padding: 2.5rem var(--page-padding) 4rem;
+  }
+  .back-link {
+    margin-bottom: 2.5rem;
+  }
+  .product {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .prod-name {
+    margin: 0.5rem 0;
+  }
+}
+</style>
