@@ -7,7 +7,7 @@
           <p class="p-overline">{{ infos.intro }}</p>
           <h1>{{ infos.name }}</h1>
           <p class="infos-p">{{ infos.text }}</p>
-          <button class="btn-1"><p class="btn-1-p">see product</p></button>
+          <button class="btn-1" @click="toProduct(infos.name, 'headphones')"><p class="btn-1-p">see product</p></button>
         </div>
       </div>
     </section>
@@ -15,29 +15,14 @@
     <section class="main-prod-wrap">
       <div class="main-product large flex-align">
         <picture>
-          <source
-            media="(min-width: 1024px)"
-            srcset="../assets/home/desktop/image-speaker-zx9.png"
-            class="source-pc"
-          />
-          <source
-            media="(min-width: 768px)"
-            srcset="../assets/home/tablet/image-speaker-zx9.png"
-            class="source-tablet"
-          />
-          <img
-            src="../assets/home/mobile/image-speaker-zx9.png"
-            alt="image of the speaker"
-            class="source-mobile"
-          />
+          <source media="(min-width: 1024px)" srcset="../assets/home/desktop/image-speaker-zx9.png" class="source-pc" />
+          <source media="(min-width: 768px)" srcset="../assets/home/tablet/image-speaker-zx9.png" class="source-tablet" />
+          <img src="../assets/home/mobile/image-speaker-zx9.png" alt="image of the speaker" class="source-mobile" />
         </picture>
         <div class="main-prod-txt">
           <h2 class="h2-big">zx9 speaker</h2>
-          <p>
-            Upgrade to premium speakers that are phenomenally built to deliver truly remarkable
-            sound.
-          </p>
-          <button class="btn-4"><p class="btn-4-p">see product</p></button>
+          <p>Upgrade to premium speakers that are phenomenally built to deliver truly remarkable sound.</p>
+          <button class="btn-4" @click="toProduct('zx9 speaker', 'speakers')"><p class="btn-4-p">see product</p></button>
         </div>
       </div>
     </section>
@@ -45,7 +30,7 @@
       <div class="secondary-product large">
         <div class="secondary-product-txt">
           <h4>zx7 speaker</h4>
-          <button class="btn-2"><p class="btn-2-p">see product</p></button>
+          <button class="btn-2" @click="toProduct('zx7 speaker', 'speakers')"><p class="btn-2-p">see product</p></button>
         </div>
       </div>
     </section>
@@ -55,8 +40,8 @@
       </div>
       <div class="ternary-product-2">
         <div class="ternary-product-txt">
-          <h4>YX1 speaker</h4>
-          <button class="btn-2"><p class="btn-2-p">see product</p></button>
+          <h4>yx1 earphones</h4>
+          <button class="btn-2" @click="toProduct('yx1 earphones', 'earphones')"><p class="btn-2-p">see product</p></button>
         </div>
       </div>
     </section>
@@ -86,6 +71,14 @@ export default {
         text: 'Experience natural, lifelike audio and exceptional build quality made for the passionate music enthusiast.',
       },
     };
+  },
+  methods: {
+    toProduct(str, category) {
+      const arr = str.toLowerCase().split(' ');
+      const join = arr.join('-');
+      console.log(join);
+      this.$router.push('/' + category);
+    },
   },
 };
 </script>
