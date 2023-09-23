@@ -39,13 +39,25 @@
           </ul>
         </div>
       </div>
+      <ProductGallery />
+      <div class="gallery flex">
+        <div class="gallery-left flex">
+          <div class="gallery-small-img"></div>
+          <div class="gallery-small-img"></div>
+        </div>
+        <div class="gallery-large-img"></div>
+      </div>
     </section>
   </div>
 </template>
 
 <script>
+import ProductGallery from '@/components/ProductGallery.vue';
 export default {
   name: 'ProductDetail',
+  components: {
+    ProductGallery,
+  },
   props: ['productInfos'],
   data() {
     return {
@@ -164,7 +176,7 @@ section {
 /* FEATURES & IN THE BOX Sections */
 .description {
   gap: 6rem;
-  margin-top: 7rem;
+  margin: 7rem 0;
 }
 .in-the-box,
 .features {
@@ -186,9 +198,38 @@ section {
   margin: 0.7rem 0;
 }
 
+/* GALLERY */
+.gallery {
+  min-height: 10dvh;
+  gap: 3rem;
+  justify-content: center;
+}
+.gallery-left {
+  flex-direction: column;
+  justify-content: space-between;
+}
+.gallery-small-img,
+.gallery-large-img {
+  border-radius: 10px;
+}
+.gallery-small-img {
+  width: 27.813rem;
+  height: 17.5rem;
+  background-color: lightgoldenrodyellow;
+}
+.gallery-large-img {
+  width: 39.688rem;
+  height: 37rem;
+  background-color: lightseagreen;
+}
 @media screen and (max-width: 1440px) {
   section {
     padding: 4rem var(--page-padding);
+  }
+}
+@media screen and (max-width: 1290px) {
+  .gallery {
+    gap: 2%;
   }
 }
 @media screen and (max-width: 1024px) {
@@ -204,6 +245,19 @@ section {
   .prod-txt * {
     max-width: auto;
   }
+  .description {
+    flex-direction: column;
+    gap: 3rem;
+    margin: 4rem 0;
+  }
+  .gallery-small-img {
+    width: 17.313rem;
+    height: 10.875rem;
+  }
+  .gallery-large-img {
+    width: 24.688rem;
+    height: 23rem;
+  }
 }
 @media screen and (max-width: 768px) {
   section {
@@ -218,6 +272,21 @@ section {
   }
   .prod-name {
     margin: 0.5rem 0;
+  }
+  .gallery {
+    flex-direction: column;
+    gap: 2rem;
+  }
+  .gallery-left {
+    align-items: center;
+    gap: 2rem;
+  }
+  .gallery-small-img,
+  .gallery-large-img {
+    width: 100%;
+  }
+  .gallery-small-img {
+    height: 10.875rem;
   }
 }
 </style>

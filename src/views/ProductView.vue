@@ -1,7 +1,9 @@
 <template>
   <div>
     <NavBar />
-    <ProductDetail  :product-infos="product"/>
+    <ProductDetail :product-infos="product" />
+    <HeroShop class="hero-shop" />
+    <BestGear />
     <FooterBar />
   </div>
 </template>
@@ -9,13 +11,17 @@
 <script>
 import NavBar from '@/components/NavBar.vue';
 import ProductDetail from '@/components/ProductDetail.vue';
+import HeroShop from '@/components/HeroShop.vue';
 import FooterBar from '@/components/FooterBar.vue';
+import BestGear from '@/components/BestGear.vue';
 export default {
   name: 'ProductView',
   components: {
     NavBar,
     FooterBar,
     ProductDetail,
+    BestGear,
+    HeroShop,
   },
   data() {
     return {
@@ -28,4 +34,8 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.hero-shop {
+  margin: 6rem auto;
+}
+</style>
