@@ -3,7 +3,7 @@
     <NavBar />
     <ProductDetail :product-infos="product" />
     <HeroShop class="hero-shop" />
-    <BestGear />
+    <BestGear class="best-gear" />
     <FooterBar />
   </div>
 </template>

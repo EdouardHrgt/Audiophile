@@ -3,7 +3,16 @@
     <section class="large">
       <router-link to="/" class="back-link">Go Back</router-link>
       <div class="product flex-align">
-        <div class="prod-img"></div>
+        <picture>
+          <source media="(min-width: 768px)" :srcset="require('../assets/' + productInfos[0].image.desktop)" class="image" />
+          <source media="(min-width: 1024px)" :srcset="require('../assets/' + productInfos[0].image.tablet)" class="image" />
+          <img
+            class="image"
+            :src="require('../assets/' + productInfos[0].image.mobile)"
+            :alt="'Picture of the ' + productInfos[0].name"
+          />
+        </picture>
+
         <div class="prod-txt">
           <p class="p-overline"><strong>new product</strong></p>
           <h2 class="prod-name">{{ productInfos[0].name }}</h2>
@@ -13,11 +22,10 @@
           </p>
           <div class="cart flex-align">
             <div class="quantity flex-center">
-              <p class="quantity-setters" @click="decrement()">-</p>
+              <button class="quantity-setters" @click="decrement()">-</button>
               <p id="qt">{{ quantity }}</p>
-              <p class="quantity-setters" @click="increment">+</p>
+              <button class="quantity-setters" @click="increment">+</button>
             </div>
-            <p class="err" v-show="errMsg">{{ errMsg }}</p>
             <button class="btn-1" @click="addToCart()"><p class="btn-1-p">add to cart</p></button>
           </div>
         </div>
@@ -39,7 +47,7 @@
           </ul>
         </div>
       </div>
-      <ProductGallery />
+      <ProductGallery :product="productInfos[0]" />
       <div class="gallery flex">
         <div class="gallery-left flex">
           <div class="gallery-small-img"></div>
@@ -62,29 +70,37 @@ export default {
   data() {
     return {
       quantity: 1,
-      errMsg: null,
+      cartProduct: {},
     };
   },
   methods: {
     addToCart() {
-      this.errMsg = null;
-      if (this.range(this.quantity, 1, 10)) {
-        alert('add to cart...');
-      } else {
-        this.errMsg = 'you cant add this quantity to your cart';
-      }
-    },
-    range(x, min, max) {
-      // Check if the quantity is in between 1 and 10
-      return x >= min && x <= max;
+      this.cartProduct.name = this.productInfos[0].slug;
+      this.cartProduct.price = this.productInfos[0].price;
+      this.cartProduct.totalPrice = this.productInfos[0].price * this.quantity;
+      alert(
+        this.quantity +
+          ' of ' +
+          this.cartProduct.name +
+          ' added to cart...' +
+          ' for a total of: ' +
+          this.cartProduct.totalPrice +
+          '$'
+      );
     },
     increment() {
-      this.errMsg = false;
-      this.quantity >= 10 ? (this.errMsg = 'A maximum of 10 is required') : this.quantity++;
+      if (this.quantity >= 10) {
+        return;
+      } else {
+        this.quantity++;
+      }
     },
     decrement() {
-      this.errMsg = false;
-      this.quantity <= 0 ? (this.errMsg = 'A minimum of 1 is required') : this.quantity--;
+      if (this.quantity <= 1) {
+        return;
+      } else {
+        this.quantity--;
+      }
     },
   },
 };
@@ -110,18 +126,18 @@ section {
 .p-overline {
   color: var(--clr-peach);
 }
-.prod-img,
+picture,
 .prod-txt {
   width: 100%;
 }
-.prod-img {
-  background-color: lightcoral;
+picture {
   height: 35rem;
-  border-radius: 10px;
-  overflow: hidden;
 }
-.pro-img * {
+.image {
+  border-radius: 10px;
   object-fit: cover;
+  width: inherit;
+  height: inherit;
 }
 .prod-txt * {
   max-width: 27.813rem;
@@ -143,13 +159,6 @@ section {
 }
 .cart {
   gap: 1rem;
-  position: relative;
-}
-.err {
-  color: var(--clr-red);
-  position: absolute;
-  bottom: -1.7rem;
-  font-weight: 500;
 }
 .quantity {
   height: 3rem;
@@ -239,7 +248,7 @@ section {
   h2 {
     font-size: var(--h4-size);
   }
-  .prod-img {
+  picture {
     height: 20.5rem;
   }
   .prod-txt * {

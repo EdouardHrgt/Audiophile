@@ -59,6 +59,10 @@ export default {
   background-repeat: no-repeat;
 }
 
+.best-gear {
+  margin-bottom: 7rem;
+}
+
 .active {
   display: block;
 }
@@ -242,6 +246,9 @@ input[type='text'] {
   h1 {
     letter-spacing: 1.29px;
     line-height: 40px;
+  }
+  .best-gear {
+    margin-bottom: 3rem;
   }
 }
 </style>

@@ -185,9 +185,6 @@ h4 {
   height: 320px;
   width: 100%;
 }
-.best-gear {
-  margin-bottom: 7rem;
-}
 
 /* --- RESPONSIVE --- */
 @media screen and (max-width: 1440px) {
@@ -262,8 +259,7 @@ h4 {
   }
   .main-product,
   .secondary-product,
-  .ternary-product-wrap,
-  .best-gear {
+  .ternary-product-wrap {
     margin-bottom: 3rem;
   }
   .secondary-product {

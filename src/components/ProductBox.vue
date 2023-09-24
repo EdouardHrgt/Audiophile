@@ -72,9 +72,6 @@ export default {
 .prod-desc {
   margin-bottom: 2rem;
 }
-.best-gear {
-  margin: 7rem auto;
-}
 @media screen and (max-width: 1440px) {
   .prod {
     gap: 5rem;
@@ -103,9 +100,6 @@ export default {
   }
   .prod-txt * {
     max-width: 35.75rem;
-  }
-  .best-gear {
-    margin: 3rem auto 4rem;
   }
 }
 @media screen and (max-width: 768px) {
