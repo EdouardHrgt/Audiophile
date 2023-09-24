@@ -231,6 +231,28 @@ input[type='text'] {
   border: 2px solid var(--clr-red);
 }
 
+.quantity {
+  height: 3rem;
+  background-color: var(--clr-grey);
+  gap: 1rem;
+  width: 7rem;
+}
+.quantity * {
+  font-size: var(--h6-size);
+  font-weight: 600;
+  color: var(--clr-border);
+}
+.quantity-setters {
+  cursor: pointer;
+  transition: 0.4s;
+}
+.quantity-setters:hover {
+  color: var(--clr-black);
+}
+#qt {
+  color: var(--clr-black);
+}
+
 /* --- RESPONSIVE --- */
 @media screen and (max-width: 1440px) {
 }

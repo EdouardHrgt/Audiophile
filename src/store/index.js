@@ -6,7 +6,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     products: [],
-    cart: { isOpen: false, items: [] },
+    cart: { isOpen: false, items: [] }, // chaque items = {id, slug, price, picture thumbnail}
   },
   getters: {
     getHeadphones(state) {
@@ -28,6 +28,9 @@ export default new Vuex.Store({
     },
     ChangeCartStatus(state, bool) {
       state.cart.isOpen = bool;
+    },
+    addToCart(state, item) {
+      state.cart.items.push(item);
     },
   },
   actions: {},

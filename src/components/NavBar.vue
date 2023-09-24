@@ -39,12 +39,17 @@
         </svg>
       </div>
     </header>
+    <CartComponent />
   </div>
 </template>
 
 <script>
+import CartComponent from '@/components/CartComponent.vue';
 export default {
   name: 'NavBar',
+  components: {
+    CartComponent,
+  },
   data() {
     return {
       isOpen: false,
