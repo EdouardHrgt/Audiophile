@@ -10,9 +10,8 @@
             <img :src="require('../assets/shared/tablet/' + p.main.tablet)" />
           </picture>
 
-          <div class="box-txt">
+          <div class="box-txt flex">
             <h4>{{ p.name }}</h4>
-            {{ p.category }}
             <button class="btn-1" @click="toProduct(p.category)"><p class="btn-1-p">see product</p></button>
           </div>
         </div>
@@ -56,8 +55,9 @@ h3 {
   text-align: center;
 }
 .boxes {
-  justify-content: space-between;
   margin: 4rem auto 7rem;
+  justify-content: center;
+  gap: 4%;
 }
 .box {
   width: 21.875rem;
@@ -75,11 +75,16 @@ h3 {
 .box-img * {
   width: inherit;
   height: inherit;
+  object-fit: cover;
 }
 
 .box-txt {
+  flex-direction: column;
+  justify-content: flex-end;
   text-align: center;
-  margin: 1rem auto 0;
+  align-items: center;
+  margin: 0.2rem auto 0;
+  min-height: 7.2rem;
 }
 
 .box-txt button {
@@ -88,5 +93,43 @@ h3 {
 
 h4 {
   font-size: var(--h6-size);
+  line-height: 1.2rem;
+}
+
+@media screen and (max-width: 1270px) {
+  .box {
+    width: 18rem;
+  }
+  .boxes {
+    gap: 1rem;
+  }
+  h4 {
+    font-size: 1rem;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .box {
+    width: auto;
+    max-width: 15rem;
+  }
+}
+@media screen and (max-width: 768px) {
+  .boxes {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    gap: 2rem;
+    margin: 2rem auto 7rem;
+  }
+  .box {
+    width: 100%;
+    max-width: unset;
+    display: block;
+  }
+  .box-txt {
+    min-height: unset;
+    margin: 1.3rem auto 0.5rem;
+  }
 }
 </style>

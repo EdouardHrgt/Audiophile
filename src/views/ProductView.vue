@@ -36,6 +36,11 @@ export default {
 
 <style scoped>
 .hero-shop {
-  margin: 6rem auto;
+  margin: 2rem auto 10rem;
+}
+@media screen and (max-width: 768px) {
+  .hero-shop {
+    margin: 2rem auto 3rem;
+  }
 }
 </style>

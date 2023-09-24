@@ -6,6 +6,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     products: [],
+    cart: { isOpen: false, items: [] },
   },
   getters: {
     getHeadphones(state) {
@@ -24,6 +25,9 @@ export default new Vuex.Store({
   mutations: {
     importList(state, list) {
       state.products = list;
+    },
+    ChangeCartStatus(state, bool) {
+      state.cart.isOpen = bool;
     },
   },
   actions: {},

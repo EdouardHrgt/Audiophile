@@ -47,14 +47,68 @@
           </ul>
         </div>
       </div>
-      <ProductGallery :product="productInfos[0]" />
       <div class="gallery flex">
         <div class="gallery-left flex">
-          <div class="gallery-small-img"></div>
-          <div class="gallery-small-img"></div>
+          <div class="gallery-small-img gallery-img-1">
+            <picture>
+              <source
+                media="(min-width: 768px)"
+                :srcset="require('../assets/' + productInfos[0].gallery.first.desktop)"
+                class="image-preview"
+              />
+              <source
+                media="(min-width: 1024px)"
+                :srcset="require('../assets/' + productInfos[0].gallery.first.tablet)"
+                class="image-preview"
+              />
+              <img
+                class="image-preview"
+                :src="require('../assets/' + productInfos[0].gallery.first.mobile)"
+                alt="Illustration of use cases of the product"
+              />
+            </picture>
+          </div>
+          <div class="gallery-small-img gallery-img-2">
+            <picture>
+              <source
+                media="(min-width: 768px)"
+                :srcset="require('../assets/' + productInfos[0].gallery.second.desktop)"
+                class="image-preview"
+              />
+              <source
+                media="(min-width: 1024px)"
+                :srcset="require('../assets/' + productInfos[0].gallery.second.tablet)"
+                class="image-preview"
+              />
+              <img
+                class="image-preview"
+                :src="require('../assets/' + productInfos[0].gallery.second.mobile)"
+                alt="Illustration of use cases of the product"
+              />
+            </picture>
+          </div>
         </div>
-        <div class="gallery-large-img"></div>
+        <div class="gallery-large-img gallery-img-3">
+          <picture>
+            <source
+              media="(min-width: 768px)"
+              :srcset="require('../assets/' + productInfos[0].gallery.third.desktop)"
+              class="image-preview"
+            />
+            <source
+              media="(min-width: 1024px)"
+              :srcset="require('../assets/' + productInfos[0].gallery.third.tablet)"
+              class="image-preview"
+            />
+            <img
+              class="image-preview"
+              :src="require('../assets/' + productInfos[0].gallery.third.mobile)"
+              alt="Illustration of use cases of the product"
+            />
+          </picture>
+        </div>
       </div>
+      <ProductGallery :product="productInfos[0]" />
     </section>
   </div>
 </template>
@@ -185,7 +239,7 @@ picture {
 /* FEATURES & IN THE BOX Sections */
 .description {
   gap: 6rem;
-  margin: 7rem 0;
+  margin: 9rem 0;
 }
 .in-the-box,
 .features {
@@ -212,24 +266,26 @@ picture {
   min-height: 10dvh;
   gap: 3rem;
   justify-content: center;
+  margin-bottom: 10rem;
 }
 .gallery-left {
   flex-direction: column;
   justify-content: space-between;
 }
-.gallery-small-img,
-.gallery-large-img {
-  border-radius: 10px;
-}
 .gallery-small-img {
   width: 27.813rem;
   height: 17.5rem;
-  background-color: lightgoldenrodyellow;
 }
 .gallery-large-img {
   width: 39.688rem;
   height: 37rem;
-  background-color: lightseagreen;
+}
+
+.image-preview {
+  border-radius: 10px;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 @media screen and (max-width: 1440px) {
   section {

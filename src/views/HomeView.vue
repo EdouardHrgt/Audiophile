@@ -1,6 +1,7 @@
 <template>
   <div>
     <NavBar />
+    <CartComponent />
     <section class="hero-sec">
       <div class="hero flex-align large">
         <div class="hero-txt">
@@ -55,6 +56,7 @@ import NavBar from '@/components/NavBar.vue';
 import HeroShop from '@/components/HeroShop.vue';
 import FooterBar from '@/components/FooterBar.vue';
 import BestGear from '@/components/BestGear.vue';
+import CartComponent from '@/components/CartComponent.vue';
 export default {
   name: 'HomeView',
   components: {
@@ -62,6 +64,7 @@ export default {
     FooterBar,
     HeroShop,
     BestGear,
+    CartComponent,
   },
   data() {
     return {
