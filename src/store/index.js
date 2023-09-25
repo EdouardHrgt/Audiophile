@@ -6,7 +6,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     products: [],
-    cart: { isOpen: false, items: [] }, // chaque items = {id, slug, price, picture thumbnail}
+    cart: { isOpen: false, isActive: false, items: [] },
   },
   getters: {
     getHeadphones(state) {
@@ -21,6 +21,9 @@ export default new Vuex.Store({
     getProduct: (state) => (prod) => {
       return state.products.filter((n) => n.slug == prod);
     },
+    getTotalPrice(state) {
+      return state.cart.items.reduce((total, item) => total + item.totalPrice, 0);
+    },
   },
   mutations: {
     importList(state, list) {
@@ -29,8 +32,33 @@ export default new Vuex.Store({
     ChangeCartStatus(state, bool) {
       state.cart.isOpen = bool;
     },
-    addToCart(state, item) {
-      state.cart.items.push(item);
+    resetCart(state) {
+      state.cart.items = [];
+    },
+    addToCart(state, obj) {
+      const product = state.cart.items.find((product) => product.name === obj.name);
+      if (!product) {
+        state.cart.items.push(obj);
+      }
+    },
+    deleteItem(state, name) {
+      const product = state.cart.items.find((product) => product.name === name);
+      const productToDelete = state.cart.items.indexOf(product);
+      if (productToDelete !== -1) {
+        state.cart.items.splice(productToDelete, 1);
+      }
+    },
+    addQuantity(state, name) {
+      const product = state.cart.items.find((product) => product.name === name);
+      product.quantity++;
+      product.totalPrice = product.quantity * product.price;
+    },
+    removeQuantity(state, name) {
+      const product = state.cart.items.find((product) => product.name === name);
+      if (product.quantity > 0) {
+        product.quantity--;
+        product.totalPrice = product.quantity * product.price;
+      }
     },
   },
   actions: {},

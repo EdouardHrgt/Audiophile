@@ -22,11 +22,12 @@
           </p>
           <div class="cart flex-align">
             <div class="quantity flex-center">
-              <button class="quantity-setters" @click="decrement()">-</button>
+              <button class="quantity-setters" v-on:click="decrement()">-</button>
               <p id="qt">{{ quantity }}</p>
-              <button class="quantity-setters" @click="increment">+</button>
+              <button class="quantity-setters" v-on:click="increment()">+</button>
             </div>
-            <button class="btn-1" @click="addToCart()"><p class="btn-1-p">add to cart</p></button>
+            <button class="btn-1" v-on:click="addToCart()"><p class="btn-1-p">add to cart</p></button>
+            <p class="error" v-show="errMsg">{{ errMsg }}</p>
           </div>
         </div>
       </div>
@@ -124,7 +125,9 @@ export default {
   data() {
     return {
       quantity: 1,
-      cartProduct: {},
+      cartProduct: { name: null, price: null, totalPrice: null, thumbnail: null, quantity: null },
+      cartStatus: false,
+      errMsg: '',
     };
   },
   methods: {
@@ -132,15 +135,10 @@ export default {
       this.cartProduct.name = this.productInfos[0].slug;
       this.cartProduct.price = this.productInfos[0].price;
       this.cartProduct.totalPrice = this.productInfos[0].price * this.quantity;
-      alert(
-        this.quantity +
-          ' of ' +
-          this.cartProduct.name +
-          ' added to cart...' +
-          ' for a total of: ' +
-          this.cartProduct.totalPrice +
-          '$'
-      );
+      this.cartProduct.thumbnail = this.productInfos[0].image.mobile;
+      this.cartProduct.quantity = this.quantity;
+      this.checkDuplicate(this.cartProduct);
+      this.$store.commit('addToCart', this.cartProduct);
     },
     increment() {
       if (this.quantity >= 10) {
@@ -149,12 +147,25 @@ export default {
         this.quantity++;
       }
     },
+    checkDuplicate(obj) {
+      const duplicate = this.$store.state.cart.items.find((product) => product.name === obj.name);
+      if (duplicate) {
+        this.errMsg = 'This product is already in your cart...';
+      } else {
+        this.errMsg = '';
+        this.ToggleCart();
+      }
+    },
     decrement() {
       if (this.quantity <= 1) {
         return;
       } else {
         this.quantity--;
       }
+    },
+    ToggleCart() {
+      this.cartStatus = !this.cartStatus;
+      this.$store.commit('ChangeCartStatus', this.cartStatus);
     },
   },
 };
@@ -213,6 +224,13 @@ picture {
 }
 .cart {
   gap: 1rem;
+  position: relative;
+}
+.error {
+  color: var(--clr-red);
+  position: absolute;
+  bottom: -2rem;
+  font-weight: bold;
 }
 
 /* FEATURES & IN THE BOX Sections */

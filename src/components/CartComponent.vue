@@ -1,30 +1,36 @@
 <template>
   <div>
-    <section class="container" v-if="cartStatus" @wheel.prevent @touchmove.prevent @scroll.prevent @click="ToggleCart()">
+    <section class="container" v-if="cartStatus" @wheel.prevent @touchmove.prevent @scroll.prevent>
       <div class="cart-wrapper large">
-        <div class="cart flex">
+        <div class="cart flex" ref="cart">
           <div class="cart-title flex">
-            <h6>cart (0)</h6>
-            <p class="remove">Remove all</p>
+            <h6>cart ({{ CartSize }})</h6>
+            <p class="remove" @click="removeAll()">Remove all</p>
           </div>
-          <ul v-if="items.length">
-            <li class="flex-align">
-              <div class="product-img"></div>
+          <ul>
+            <li class="flex-align" v-for="it in cartItems" :key="it.name">
+              <div class="product-img">
+                <img :src="require('../assets/' + it.thumbnail)" :alt="'Picture of the ' + it.name" />
+              </div>
               <div class="product-infos">
-                <p><strong>XX99 MK II</strong></p>
-                <p class="price">$ 2,999</p>
+                <p>
+                  <strong>{{ it.name }}</strong>
+                </p>
+                <p class="price">$ {{ it.totalPrice }}</p>
               </div>
               <div class="quantity flex-center">
-                <button class="quantity-setters" @click="removeItem()">-</button>
-                <p id="qt">1</p>
-                <button class="quantity-setters" @click="addItem()">+</button>
+                <button class="quantity-setters" @click="removeItem(it)">-</button>
+                <p id="qt">{{ it.quantity }}</p>
+                <button class="quantity-setters" @click="addItem(it)">+</button>
               </div>
             </li>
           </ul>
           <div>
             <div class="cart-total flex">
               <h6 class="total">total</h6>
-              <p><strong>$ 0</strong></p>
+              <p>
+                <strong>$ {{ CalcTotal }}</strong>
+              </p>
             </div>
             <button class="btn-1 checkout" @click="checkOut()"><p class="btn-1-p">checkout</p></button>
           </div>
@@ -37,14 +43,18 @@
 <script>
 export default {
   name: 'CartComponent',
-  data() {
-    return {
-      items: [],
-    };
-  },
   computed: {
     cartStatus() {
       return this.$store.state.cart.isOpen;
+    },
+    cartItems() {
+      return this.$store.state.cart.items;
+    },
+    CalcTotal() {
+      return this.$store.getters.getTotalPrice;
+    },
+    CartSize() {
+      return this.$store.state.cart.items.length;
     },
   },
   methods: {
@@ -56,12 +66,31 @@ export default {
       alert('command checked...');
     },
     addItem(item) {
-      console.log(item);
+      this.$store.commit('addQuantity', item.name);
     },
     removeItem(item) {
-      console.log(item);
+      if (item.quantity <= 1) {
+        this.$store.commit('deleteItem', item.name);
+      }
+      this.$store.commit('removeQuantity', item.name);
+    },
+    removeAll() {
+      this.$store.commit('resetCart');
+      this.$store.state.cart.isActive = false;
+    },
+    handleGlobalClick(event) {
+      const cart = this.$refs.cart;
+      if (cart && !cart.contains(event.target)) {
+        this.ToggleCart();
+      }
     },
   },
+  // mounted() {
+  //   document.addEventListener('click', this.handleGlobalClick);
+  // },
+  // beforeDestroy() {
+  //   document.removeEventListener('click', this.handleGlobalClick);
+  // },
 };
 </script>
 
@@ -73,7 +102,8 @@ export default {
   inset: 3.5rem 0 0 0;
 }
 .cart {
-  width: 23.563rem;
+  width: auto;
+  max-width: 32rem;
   min-height: 30rem;
   border-radius: 10px;
   background-color: var(--clr-white);
@@ -121,17 +151,24 @@ strong {
 }
 ul {
   margin: 2rem auto;
+  width: 100%;
 }
 
 li {
   gap: 1rem;
   margin: 0.7rem auto;
+  width: inherit;
 }
 .product-img {
   width: 4rem;
   height: 4rem;
-  background-color: lightsalmon;
+  overflow: hidden;
+}
+.product-img img {
   border-radius: 10px;
+  width: inherit;
+  height: inherit;
+  object-fit: cover;
 }
 .quantity {
   margin-left: auto;
