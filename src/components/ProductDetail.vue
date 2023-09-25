@@ -174,17 +174,7 @@ export default {
 section {
   padding: 3rem 0;
 }
-.back-link {
-  color: var(--clr-border);
-  font-size: var(--body-size);
-  margin-bottom: 3rem;
-  display: block;
-  font-weight: 600;
-  transition: color 0.4s;
-}
-.back-link:hover {
-  color: var(--clr-black);
-}
+
 .product {
   gap: 6rem;
 }

@@ -49,6 +49,7 @@ export default {
   --overline-size: 0.875rem;
   --sub-size: 0.813rem;
   --body-size: 0.938rem;
+  --label-size: 0.75rem;
 
   --margin-bottom: 10rem;
   --page-padding: 5rem;
@@ -226,16 +227,6 @@ p {
 .btn-4-p {
   color: var(--clr-white);
 }
-
-/* --- FORM STYLE --- */
-input[type='text'] {
-  border: 1px solid var(--clr-grey);
-  border-radius: 7px;
-}
-.input-err {
-  border: 2px solid var(--clr-red);
-}
-
 .quantity {
   height: 3rem;
   background-color: var(--clr-grey);
@@ -257,7 +248,17 @@ input[type='text'] {
 #qt {
   color: var(--clr-black);
 }
-
+.back-link {
+  color: var(--clr-border);
+  font-size: var(--body-size);
+  margin-bottom: 3rem;
+  display: block;
+  font-weight: 600;
+  transition: color 0.4s;
+}
+.back-link:hover {
+  color: var(--clr-black);
+}
 /* --- RESPONSIVE --- */
 @media screen and (max-width: 1440px) {
 }
