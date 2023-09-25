@@ -138,7 +138,6 @@ export default {
       this.cartProduct.thumbnail = this.productInfos[0].image.mobile;
       this.cartProduct.quantity = this.quantity;
       this.checkDuplicate(this.cartProduct);
-      this.$store.commit('addToCart', this.cartProduct);
     },
     increment() {
       if (this.quantity >= 10) {
@@ -153,6 +152,7 @@ export default {
         this.errMsg = 'This product is already in your cart...';
       } else {
         this.errMsg = '';
+        this.$store.commit('addToCart', obj);
         this.ToggleCart();
       }
     },

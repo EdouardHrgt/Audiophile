@@ -69,6 +69,11 @@ export default {
 <style scoped>
 header {
   background-color: var(--clr-black);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 99;
 }
 header > div {
   max-width: var(--max-width);

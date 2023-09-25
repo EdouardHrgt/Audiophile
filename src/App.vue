@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <NavBar />
     <main>
       <router-view></router-view>
     </main>
@@ -7,15 +8,18 @@
 </template>
 
 <script>
+import NavBar from '@/components/NavBar.vue';
 import datas from '/data.json';
 export default {
+  components: {
+    NavBar,
+  },
   data() {
     return {
       fetchDatas: datas,
     };
   },
   mounted() {
-    // Sending all products to the vueX store at App launch
     this.$store.commit('importList', this.fetchDatas);
   },
 };
@@ -125,6 +129,7 @@ svg {
 
 main {
   width: 100%;
+  margin-top: 3.625rem;
 }
 
 /* --- TITLES & paraph --- */

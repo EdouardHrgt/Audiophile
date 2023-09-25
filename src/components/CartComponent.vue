@@ -180,4 +180,19 @@ li {
   width: 100%;
   margin: 1rem auto 0;
 }
+@media screen and (max-width: 1440px) {
+  .cart {
+    margin-right: var(--page-padding);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .cart {
+    max-width: unset;
+    width: calc(100% - 3rem);
+    margin-left: unset;
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem;
+  }
+}
 </style>
