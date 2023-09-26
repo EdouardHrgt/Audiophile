@@ -63,7 +63,11 @@ export default {
       this.$store.commit('ChangeCartStatus', this.cart);
     },
     checkOut() {
-      alert('command checked...');
+      if (this.CartSize) {
+        const id = Math.floor(Math.random() * 1000);
+        this.$store.commit('ChangeCartStatus', false);
+        this.$router.push(`/checkout/${id}`);
+      }
     },
     addItem(item) {
       this.$store.commit('addQuantity', item.name);
@@ -85,12 +89,12 @@ export default {
       }
     },
   },
-  // mounted() {
-  //   document.addEventListener('click', this.handleGlobalClick);
-  // },
-  // beforeDestroy() {
-  //   document.removeEventListener('click', this.handleGlobalClick);
-  // },
+  mounted() {
+    document.addEventListener('click', this.handleGlobalClick);
+  },
+  beforeDestroy() {
+    document.removeEventListener('click', this.handleGlobalClick);
+  },
 };
 </script>
 
