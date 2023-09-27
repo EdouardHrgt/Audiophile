@@ -1,6 +1,6 @@
 <template>
   <div>
-    <section class="container" v-if="cartStatus" @wheel.prevent @touchmove.prevent @scroll.prevent>
+    <section class="container" v-show="cartStatus" @wheel.prevent @touchmove.prevent @scroll.prevent>
       <div class="cart-wrapper large">
         <div class="cart flex" ref="cart">
           <div class="cart-title flex">
@@ -82,19 +82,19 @@ export default {
       this.$store.commit('resetCart');
       this.$store.state.cart.isActive = false;
     },
-    handleGlobalClick(event) {
-      const cart = this.$refs.cart;
-      if (cart && !cart.contains(event.target)) {
-        this.ToggleCart();
-      }
-    },
+    // handleGlobalClick(event) {
+    //   const cart = this.$refs.cart;
+    //   if (cart && !cart.contains(event.target)) {
+    //     this.ToggleCart();
+    //   }
+    // },
   },
-  mounted() {
-    document.addEventListener('click', this.handleGlobalClick);
-  },
-  beforeDestroy() {
-    document.removeEventListener('click', this.handleGlobalClick);
-  },
+  // mounted() {
+  //   document.addEventListener('click', this.handleGlobalClick);
+  // },
+  // beforeDestroy() {
+  //   document.removeEventListener('click', this.handleGlobalClick);
+  // },
 };
 </script>
 

@@ -259,6 +259,15 @@ p {
 .back-link:hover {
   color: var(--clr-black);
 }
+@keyframes appearing {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 /* --- RESPONSIVE --- */
 @media screen and (max-width: 1440px) {
 }
