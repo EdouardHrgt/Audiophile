@@ -86,10 +86,10 @@ export default {
   background-color: var(--clr-black);
 }
 .hero {
-  background-position: right;
+  background-position: right bottom;
   background-repeat: no-repeat;
   background-size: cover;
-  background-image: url(../assets/home/desktop/image-hero.jpg);
+  background-image: url(../assets/home/desktop/image-hero-removebg.png);
   color: white;
   padding: 9rem 0;
 }
@@ -227,7 +227,7 @@ h4 {
 
 @media screen and (max-width: 1024px) {
   .hero {
-    background-image: url(../assets/home/tablet/image-header.jpg);
+    background-image: url(../assets/home/tablet/image-header-removebg.png);
     justify-content: center;
     background-position: center;
   }
@@ -246,7 +246,7 @@ h4 {
 }
 @media screen and (max-width: 768px) {
   .hero {
-    background-image: url(../assets/home/mobile/image-header.jpg);
+    background-image: url(../assets/home/mobile/image-header-removebg.png);
   }
   .hero-shop {
     margin: 8rem auto 3rem;
